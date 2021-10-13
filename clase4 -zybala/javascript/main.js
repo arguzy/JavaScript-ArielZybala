@@ -1,43 +1,78 @@
-// algoritmo para desafio simulador
-let productList = parseInt(prompt("Por favor seleccione un producto o presione 0 para salir:\n\n 1- Tazón , presione 1\n\n 2- Alimento Balanceado, presione 2\n\n 3- Prenda de Ropa, presione 3\n\n 4- Correa , presione 4\n\n 5- Pretal , presione 5\n\n 6- Juguete, presione 6 "));
-let i = (-1);
-let productSelected = [];
-while (productList != 0){
-    switch (productList){
-    case 1:
-        alert("Usted ha incorporado un tazón a su carrito");
-        i = i+1;
-        productSelected[i] = "Tazón"
-    break
-    case 2:
-        alert("Usted ha incorporado alimento balanceado a su carrito");
-        i = i+1;
-        productSelected[i] = "Alimento Balanceado"
-        break    
-    case 3:
-    alert("Usted ha incorporado una prenda de ropa a su carrito");
-        i = i+1;
-        productSelected[i] = "Prenda de Ropa"
-        break
-    case 4:
-        alert("Usted ha incorporado una correa a su carrito");
-        i = i+1;
-        productSelected[i] = "Correa"
-        break
-    case 5:
-        alert("Usted ha incorporado un pretal a su carrito");
-        i = i+1;
-        productSelected[i] = "Pretal"
-        break
-    case 6:
-        alert("Usted ha incorporado un juguete a su carrito");
-        i = i+1;
-        productSelected[i] = "Juguete"
-        break
+function orderByDecendent (ArrayNamed){
+    for (let i = 0; i < ArrayNamed.length; i++){
+        for(let m=i+1; m < ArrayNamed.length; m++){
+            if (ArrayNamed[i].priceProduct < ArrayNamed[m].priceProduct){
+                aux = ArrayNamed[m].priceProduct;
+                ArrayNamed[m].priceProduct = ArrayNamed[i].priceProduct;
+                ArrayNamed[i].priceProduct = aux;
+            }
+        }
     }
-    productList = parseInt(prompt("Por favor seleccione un producto o presione 0 para salir:\n\n 1- Tazón , presione 1\n\n 2- Alimento Balanceado, presione 2\n\n 3- Prenda de Ropa, presione 3\n\n 4- Correa , presione 4\n\n 5- Pretal , presione 5\n\n 6- Juguete, presione 6 "));
+    
+    for (let i=0; i < ArrayNamed.length; i++){
+        alert(ArrayNamed[i].nameProduct + " su precio es de $" + ArrayNamed[i].priceProduct);
+    } 
+}
+
+
+class products{
+    constructor(idProduct, categoryProduct, nameProduct , priceProduct , stockProduct){
+    this.idProduct = idProduct;
+    this.categoryProduct = categoryProduct
+    this.nameProduct = nameProduct;
+    this.priceProduct = priceProduct;
+    this.stockProduct = stockProduct;  
     }
-    console.log("Usted tiene incorporado en su carrito los siguientes productos:" + " " + productSelected);
+}
+
+let productPots = [];
+
+
+let idProduct;
+let categoryProduct;
+let nameProduct;
+let priceProduct;    
+let stockProduct;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+idProduct = "zdb1";
+categoryProduct = "Pots"
+nameProduct ="ZeeDog B-Metal";
+priceProduct = 700;    
+stockProduct = 1000; 
+productPots.push(new products(idProduct , categoryProduct , nameProduct , priceProduct , stockProduct));
+    
+idProduct = "zdb2";
+categoryProduct = "Pots"
+nameProduct = "ZeeDog B-Standart";
+priceProduct = 600;
+stockProduct = 1500; 
+productPots.push(new products(idProduct , categoryProduct , nameProduct , priceProduct , stockProduct));
+
+idProduct = "zdb3";
+categoryProduct = "Pots"
+nameProduct ="ZeeDog B-Multi", 
+priceProduct = 3000,
+stockProduct = 2000; 
+productPots.push(new products(idProduct , categoryProduct , nameProduct , priceProduct , stockProduct));
+
+idProduct = "zdb4";
+categoryProduct = "Pots"
+nameProduct = "ZeeDog B-Expand",
+priceProduct = 500,
+stockProduct = 2500; 
+productPots.push(new products(idProduct , categoryProduct , nameProduct , priceProduct , stockProduct));
+
+
+requestToUser = Number(prompt("Quiere conocer que tazones, bebederos o Comederos para Perros tenemos, de mayor a menor precio?\n\n Si - entonces escriba 1 \n\n No - entonces escriba 2 "))
+if(requestToUser == 1){
+    orderByDecendent(productPots);
+} else {"Okey, será en otra ocasión, hasta luego"};
+
+
+
+
 
 
 // algoritmo para desafio complementario
