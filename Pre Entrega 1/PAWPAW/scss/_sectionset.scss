@@ -1,0 +1,99 @@
+.hero{
+    min-height: 85vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content:center; 
+    align-items: center;
+    @include breakpoint (tablet){
+    align-items: flex-start;
+    }
+    &--index {
+    background-image: url('../media/idx/wall-idx.jpg');
+}
+    &--contact{
+    background-image: url('../media/cont/wall-hero-cnt.png');
+}
+    &--barber {
+    background-image: url('../media/barber/wall-hero-barber.jpg');
+}
+    &--kinder{
+    background-image: url('../media/kinder/wall-hero-kinder.jpg');
+}
+    &--products {
+    background-image: url('../media/prdts/wall-hero-shop.jpg');
+}
+    &--index,  
+    &--contact,
+    &--kinder,
+    &--barber,
+    &--products{
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }            
+ &__container{
+    margin-left: .5em;
+    width: 60vw;
+    max-width: 320px;
+    min-height: 40vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    @include breakpoint (tablet){
+        padding-left: 2em;
+        align-items: center;
+    }
+}
+&__title{
+    padding-bottom: .8em;
+    padding-left: .3em;
+    text-align: center;
+    @include caption ($clr-text, $clr-shad)
+}
+&__text{
+    padding-bottom: .8em;
+    padding-left: .5em;
+    text-align: center;
+    @include chief ($clr-text, normal, $clr-shad);
+}
+}
+
+.secondary{
+    margin-top: 100px;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.third{
+    width: 100vw;
+    margin-top: 100px;
+    display: flex;
+    flex-flow:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+   &--contact{
+    @include breakpoint (tablet){
+      flex-flow: wrap;
+    }
+    } 
+}
+
+.quarter{
+    margin-top: 100px;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;   
+}
