@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+        content="Corte de pelo, de uñas, baño, secado, cepillado, limpieza de oídos, lagrimales y glándulas. Podes traer a tu perro o reservar turno, lo que más te convenga!">
+    <meta name="keywords"
+        content="peluquería canina, peluquería perros, peluquería perro capital federal, peluquería perro capital federal, peluquería perro caba, peluquería perro villa urquiza, corte pelo perro, corte de raza perro, corte uñas perro, baño perros, limpieza oídos perro, limpieza lagrimales perro, limpieza glándulas perro">
+    <meta name="author" content="Ariel Zybala">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="javascript/main.js"></script>
+
+    <title>PAWPAW Peluquería Perruna</title>
+</head>
+
+<body>
+    <!--HEADER-->
+
+    <header>
+        <a class="logo" href="index.html">PAW-PAW <i class="fa fa-paw logo__i"></i></a>
+        <div class="menu">
+            <input id="nav" class="menu__input" type="checkbox">
+            <label for="nav" class="menu__label"><i class="fa fa-bars menu__icon"></i></label>
+            <nav class="menu__nav">
+                <ul class="menu__ul">
+                    <li class="menu__li"><a class="menu__a" href="index.html">Inicio</a></li>
+                    <li class="menu__li"><a class="menu__a" href="contacto-faq.html">Contacto</a></li>
+                    <li class="menu__li"><a class="menu__a" href="productos.html">Productos</a></li>
+                    <li class="menu__li"><a class="menu__a" href="guarderia.html">Guardería</a></li>
+                    <li class="menu__li"><a class="menu__a" href="peluqueria.html">Peluquería</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!--HERO /
+    SECONDARY Bloques: Order, Staff y Map -se aplicó un mixin y extend se redujo mucho la cantidad de escritura a mano
+    / THIRD Slider y Formulario-->
+    <main>
+        <section class="hero hero--barber">
+            <div class="hero__container">
+                <h1 class="hero__title">PAWPAW Peluquería</h1>
+                <p class="hero__text">Corte de pelo, de uñas, baño, secado, cepillado, limpieza de oídos, lagrimales, y
+                    mucho más!</p>
+                <a href="#turno-barber" class="btn btn__hero">Pedír Turno!</a>
+            </div>
+        </section>
+
+        <section class="secondary">
+            <div class="secondary__container secondary__container--order">
+                <div class="secondary__charge">
+                    <div class="secondary__framing">
+                        <h3 class="secondary__title">Pedir turno al Whatsapp</h3>
+                        <p class="secondary__text">Escribí un mensaje con estos datos, al (011) 5111-9999:</p>
+                        <ol class="secondary__list">
+                            <li class="secondary__item">Nombre y Apellido.</li>
+                            <li class="secondary__item">Teléfono para Emergencias.</li>
+                            <li class="secondary__item">Raza y Tamaño.</li>
+                            <li class="secondary__item">Días y Horarios en los que podes traer a tu mascota.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondary__container secondary__container--haircut">
+                <div class="secondary__staff secondary__staff--groomer">
+                    <div class="secondary__framing">
+                        <h3 class="secondary__title">¿Quienes son nuestros Peluqueros?</h3>
+                        <p class="secondary__text">En PawPaw, contratamos profesionales egresados del ISE.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondary__container secondary__container--map">
+                <div class="secondary__ubication">
+                    <div class="secondary__framing">
+                        <h3 class="secondary__title">¿Dónde se encuentra la Peluquería de PawPaw?</h3>
+                        <p class="secondary__text">La podes encontrar en la calle Franklin D. Roosevelt 2500, del Barrio
+                            de
+                            Belgrano en la Ciudad Autónoma de Buenos Aires.
+                        </p>
+                    </div>
+                </div>
+                <iframe class="secondary__gps"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d710.9955661869743!2d-58.46142114979668!3d-34.55855304454871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb42af5a93c99%3A0x6f3cd9454b39c49a!2sFranklin%20D.%20Roosevelt%202500%2C%20C1428BOL%20CABA!5e0!3m2!1ses-419!2sar!4v1626127120996!5m2!1ses-419!2sar"
+                    width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+        <section class="third">
+            <div class="third__slider">
+                <div class="third__framing">
+                    <div class="third__message">
+                        <h3 class="third__title">Buenos peluqueros e instalaciones!</h3>
+                        <p class="third__par">Nuestro desafío es que tu mascota, tenga la mejor experiencia!</p>
+                    </div>
+                    <div class="third__pics">
+                        <div>
+                            <img class="third__img" src="media/barber/slidebarber/slider-pic1-barber.jpg"
+                                alt="perro-en-peluqueria">
+                        </div>
+
+                        <div>
+                            <img class="third__img" src="media/barber/slidebarber/slider-pic2-barber.jpg"
+                                alt="perro-en-peluqueria">
+                        </div>
+
+                        <div>
+                            <img class="third__img" src="media/barber/slidebarber/slider-pic3-barber.jpg"
+                                alt="perro-en-peluqueria">
+                        </div>
+
+                        <div>
+                            <img class="third__img" src="media/barber/slidebarber/slider-pic4-barber.jpg"
+                                alt="perro-en-peluqueria">
+                        </div>
+
+                        <div>
+                            <img class="third__img" src="media/barber/slidebarber/slider-pic5-barber.jpg"
+                                alt="perro-en-peluqueria">
+                        </div>
+
+                        <div>
+                            <img class="third__img" src="media/barber/slidebarber/slider-pic6-barber.jpg"
+                                alt="perro-en-peluqueria">
+                        </div>
+
+                        <div>
+                            <img class="third__img" src="media/barber/slidebarber/slider-pic7-barber.jpg"
+                                alt="perro-en-peluqueria">
+                        </div>
+
+                        <div>
+                            <img class="third__img" src="media/barber/slidebarber/slider-pic8-barber.jpg"
+                                alt="perro-en-peluqueria">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="third__form third__form--barber">
+                <form class="third__subject" id="turno-barber" action="" method="post">
+                    <h5 class="third__lead">Formulario de Reserva</h5>
+                    <div class="third__profile">
+                        <div class="third__name">
+                            <label for="fullname-barber" hidden>
+                                <p class="third__par">Nombre/s y Apellido/s</p>
+                            </label>
+                            <input class="third__input" type="text" id="fullname-barber" name="fullname-barber"
+                                pattern="[A-Za-z]{03-15}" autocomplete="on" required
+                                placeholder="Nombre/s y Apellido/s">
+                        </div>
+
+                        <div class="third__phone">
+                            <label class="third__label" for="phone-barber" hidden>
+                                <p class="third__par">Nro. de Teléfono</p>
+                            </label>
+                            <input class="third__input" type="tel" id="phone-barber" name="phone-barber" minlength="13"
+                                pattern="[0-9]{1}-[0-9]{4}-[0-9]{8}" autocomplete="on" required
+                                placeholder="Nro. de Teléfono">
+                        </div>
+
+                        <div class="third__mail">
+                            <label class="third__label" for="email-barber" hidden>
+                                <p class="third__par">Casilla de Correo</p>
+                            </label>
+                            <input class="third__input" type="email" id="email-barber" name="email-barber"
+                                placeholder="casilla@correo.com" autocomplete="off" required>
+                        </div>
+
+                        <div class="third__pet">
+                            <label class="third__label" for="name-pet-barber" hidden>
+                                <p class="third__par">Nombre del Perro</p>
+                            </label>
+                            <input class="third__input" type="text" id="name-pet-barber" name="name-pet-barber"
+                                pattern="[A-Za-z]{03-15}" required placeholder="Nombre del Perro">
+                        </div>
+                    </div>
+                    <div class="third__additional">
+                        <hr class="third__scratch">
+                        <p class="third__subtitle">Caracteristicas para el Servicio</p>
+
+                        <label class="third__label" for="bath"><input class="third__input" type="checkbox" id="bath"
+                                name="bath" value="bath">
+                            <p class="third__par">Baño</p>
+                        </label>
+
+                        <label class="third__label" for="cut-hair"> <input class="third__input" type="checkbox"
+                                id="cut-hair" name="cut-hair" value="cut-hair">
+                            <p class="third__par">Corte de Pelo</p>
+                        </label>
+
+                        <label class="third__label" for="cut-nails"><input class="third__input" type="checkbox"
+                                id="cut-nails" name="cut-nails" value="cut-nails">
+                            <p class="third__par">Corte de Uñas</p>
+                        </label>
+
+                        <label class="third__label" for="clean-ear"> <input class="third__input" type="checkbox"
+                                id="clean-ear" name="clean-ear" value="clean-ear">
+                            <p class="third__par">Limpieza de Oídos</p>
+                        </label>
+
+                        <label class="third__label" for="clean-gland"><input class="third__input" type="checkbox"
+                                id="clean-gland" name="clean-gland" value="clean-gland">
+                            <p class="third__par">Limpieza de Glándulas</p>
+                        </label>
+                    </div>
+                    <div class="third__selective">
+                        <hr class="third__scratch">
+                        <p class="third__subtitle">¿Qué tamaño tiene tu Perro?</p>
+                        <label class="third__label" for="dog-size" hidden>
+                            <p>¿Qué tamaño tiene tu Perro?</p>
+                        </label>
+                        <select class="third__options" id="dog-size" name="dog-size">
+                            <option value="little">Chico</option>
+                            <option value="middle">Mediano</option>
+                            <option value="big">Grande</option>
+                        </select>
+                    </div>
+                    <div class="third__turn">
+                        <hr class="third__scratch">
+                        <p class="third__subtitle">Días para la Reserva</p>
+                        <div class="third__days">
+                            <label class="third__label" for="turn-friday"><input class="third__input" type="radio"
+                                    id="turn-friday" name="turn-days" value="turn-friday">
+                                <p class="third__par">Días Viernes</p>
+                            </label>
+                            <label class="third__label" for="turn-friday"><input class="third__input" type="radio"
+                                    id="turn-friday" name="turn-days" value="turn-friday">
+                                <p class="third__par">Días Sábados</p>
+                            </label>
+                        </div>
+
+                        <p class="third__subtitle">Horarios para la Reserva</p>
+
+                        <label class="third__label" for="turn-morning"><input class="third__input" type="radio"
+                                id="turn-morning" name="visit-hour" value="morning">
+                            <p class="third__par">09:00 a 12:00hs</p>
+                        </label>
+
+                        <label class="third__label" for="turn-noon"><input class="third__input" type="radio"
+                                id="turn-noon" name="visit-hour" value="noon">
+                            <p class="third__par">12:00 a 15:00hs</p>
+                        </label>
+
+                        <label class="third__label" for="turn-afternoon"><input class="third__input" type="radio"
+                                id="turn-afternoon" name="visit-hour" value="afternoon">
+                            <p class="third__par">15:00 a 18:00hs</p>
+                        </label>
+                    </div>
+                </form>
+                <button class="btn btn--form" type="submit">Enviar</button>
+            </div>
+        </section>
+    </main>
+    <!--FOOTER-->
+    <footer>
+        <div class="sitemap">
+            <h5 class="sitemap__title">Mapa del Sitio</h5>
+            <ul class="sitemap__ul">
+                <li class="sitemap__li"><a class="sitemap__links" href="index.html">Inicio</a></li>
+                <li class="sitemap__li"><a class="sitemap__links" href="contacto-faq.html">Contacto</a></li>
+                <li class="sitemap__li"><a class="sitemap__links" href="productos.html">Productos</a></li>
+                <li class="sitemap__li"><a class="sitemap__links" href="guarderia.html">Guardería</a></li>
+                <li class="sitemap__li"> <a class="sitemap__links" href="peluqueria.html">Peluquería</a></li>
+            </ul>
+        </div>
+
+        <form class="newsletter" action="">
+            <label class="newsletter__label" for="email-news">
+                <h5>Newsletter</h5>
+            </label>
+            <input class="newsletter__input" type="email" id="email-news" name="email-news"
+                placeholder="email@me-susbribí.com" required>
+            <div>
+                <button class="newsletter__btn" type="submit">Suscribirme</button>
+            </div>
+        </form>
+
+        <div class="social">
+            <ul class="social__ul">
+                <li class="social__li"><a class="social__icon" href="#" aria-describedby="boton-facebook"><i
+                            class="fa fa-facebook-square"></i></a>
+                </li>
+                <li class="social__li"><a class="social__icon" href="#" aria-describedby="boton-twitter"><i
+                            class="fa fa-twitter-square"></i></a>
+                </li>
+                <li class="social__li"><a class="social__icon" href="#" aria-describedby="boton-instagram"><i
+                            class="fa fa-instagram"></i></a></li>
+            </ul>
+        </div>
+
+        <address class="address">
+            <h5 class="address__title">Contáctate</h5>
+            <ul class="address__ul">
+                <li class="address__li">
+                    <p class="address__par">Whatsapp:</p>
+                    <h6 class="address__subtitle">011-9-51119999</h6>
+                </li>
+                <li class="address__li">
+                    <p class="address__par">Teléfono Local:</p>
+                    <h6 class="address__subtitle">011-9-4700-0001</h6>
+                </li>
+                <li class="address__li">
+                    <p class="address__par">E-mail:</p>
+                    <h6 class="address__subtitle">pawpaw@veterinaria.com</h6>
+                </li>
+            </ul>
+        </address>
+
+        <div class="copyright">
+            <p class="copyright__text">Copyright PAWPAW S.A. - 2021. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
