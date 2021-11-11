@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+    <div class="seventh__form" id="main">
+        <form class="seventh__subject" id="logSign" action="" method="post">
+
+            <h5 class="seventh__lead">Login User</h5>
+            
+            <button type="button" id="btnSignin">Sing In User</button>
+            <div class="seventh__profile"> 
+
+                <div class="seventh__avatarsign seventh__formSignin">
+                    <label for="fileSign">Agregar Foto de Perfil</label>
+                    <input type="file" id="avatarSign" name="fileSign">
+                </div>
+                
+                <div class="seventh__name">
+                    <label for="nameOfUser" hidden>
+                        <p class="seventh__par">Nombre de Usuario</p>
+                    </label>
+                    <input class="seventh__input" type="text" id="nameOfUser" name="nameOfUser" autocomplete="on" required
+                    placeholder="Nombre/s y Apellido/s">
+                </div>
+                
+                <div class="seventh__nickname seventh__formSignin">
+                    <label for="nickOfUser" hidden>
+                        <p class="seventh__par">Nickname</p>
+                    </label>
+                    <input class="seventh__input" type="text" id="nickOfUser" name="nickOfUser"  autocomplete="on" required
+                        placeholder="Apodo o Nickname">
+                </div>
+                
+                <div class="seventh__pass">
+                        <label for="password" hidden>
+                            <p class="seventh__par">Contraseña</p>
+                        </label>
+                        <input type="password" name="password" minlength="8" maxlength="16" required placeholder="Contraseña" id="password"><span id="takeAlook" action="hide" class="fa fa-low-vision"></span>
+                </div>
+
+                <div class="seventh__repass seventh__formSignin">
+                    <label for="repass" hidden>
+                        <p class="seventh__par">Confirmar Contraseña</p>
+                    </label>
+                    <input type="password" name="repass" minlength="8" maxlength="16" required placeholder="Confirmar Contraseña" id="repass"><span id="takeAlook" class="fa fa-low-vision"></span>
+                </div>
+                
+                <div class="seventh__mail seventh__formSignin">
+                    <label class="seventh__label" for="emailSign" hidden>
+                        <p class="seventh__par">Casilla de Correo</p>
+                    </label>
+                    <input class="seventh__input" type="email" id="emailSign" name="emailSign"
+                    placeholder="casilla@correo.com" autocomplete="off" required>
+                </div>
+                
+                <div class="seventh__address seventh__formSignin">
+                    <label for="addressSign" hidden>
+                        <p class="seventh__par">Domicilio</p>
+                    </label>
+                    <input class="seventh__input" type="text" id="addressSign" name="addressSign"  autocomplete="on" required  placeholder="Domicilio">
+                </div>
+                
+                <div class="seventh__postCode seventh__formSignin">
+                    <label class="seventh__label" for="postalSign" hidden>
+                        <p class="seventh__par">Código de Correo Postal</p>
+                    </label>
+                    <input class="seventh__input" type="number" id="postalSign" name="postalSign" max="9999" autocomplete="on" required placeholder="Cod.Post. ej: 1431">
+                </div>
+                
+            </div>
+            <span class="error"></span>
+            <br>
+            
+            <div id="btnLogSign"><button class="btn btn--form" type="button" id="btnLogin"> Iniciar Sesión </button></div>
+            
+                <!--<button class="btn btn--form" id="submitUser" type="submit"> Registrarse </button>-->
+        </form>
+    </div>
+
+
+    
+    <script src="js/loginFinal.js"></script>
+</body>
+</html>
+
+
+
+
