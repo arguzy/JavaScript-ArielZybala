@@ -1,38 +1,33 @@
-
-
 //Creo las variables que voy a ir usando en el algoritmo.
 let newUser = [];
-let logUser;
-let recoverPass;
 let user = [];
-let userLoged;
-var i; 
+
+
+
+//---------------------------------------------------------------------------------------------------------
+
 //Iniciamos chequeando que el Session Storage
 checkSession();
 
 function checkSession(){
-    //esta función crea una variable y con método json, de por medio, consulta si hay un array en el sessionStorage, que tenga el Key: userLoged
+    //esta función crea una variable y con método json, de por medio, consulta si hay un array en el sessionStorage, que tenga el Key: userLogged
     let requestForlog = JSON.parse(sessionStorage.getItem( "userLogged"));
     //le retorno una función con la variable en el argumento
     return checkProcess(requestForlog) , userProcessOn();
 
 }
 
-function userProcessOn(){
-$("#btnForUsers").click( ()=>{
-    $("#btnForUsers").addClass("userless");
-    $(".seventh").addClass("bringON");
-    btnCloseOn();
-})
-}
 // En esta función le indico, con un IF, si tengo un "userLogged", entonces se remueve del DOM el icono para loguear usuarios y se imprime sobre él, un ancor con icono de Login Out, y se retorna una función llamada logOutUser, que continúa con el proceso de destruir sessión. 
-//luego el ELSE no tengo usuario, es decir, sin usuario logueado, se imprime el formulario entero y se retorna otra función llamada logSignRec.
+//luego el ELSE, es básicamente "no tengo usuario", es decir, sin usuario logueado, se imprime 3 links y se retornan 3 funciones, cada una para cada link de trabajo sea Loguearse, crear un usuario o recuperar una contraseña.
 function checkProcess(userLogged){
 if (userLogged != undefined){
+    //quito al icono de login para que tenga espacio el de logOut
     $("a").remove("#btnForUsers");
+    // imprimo el nuevo nodo de DOM
     $("#iconLog").html(
     `<a class="userLogIn" href="#" id="btnLogOut"><i class="fa fa-sign-out" aria-hidden="true"></i></a>`
      );
+     //retorno la función que lleva el algorimo a poder destruir la sesión
      return logOutUser();
     } else {
         $(".seventh__subject").html(
@@ -52,20 +47,25 @@ if (userLogged != undefined){
         
         <div class="seventh__framingForms">
         </div>                   `
-                            ); 
-                        }
+            ); 
+            }
+            // el retorno con tres funciones que permiten trabajar 3 opciones al usuario
+            return   loginOn()  ,  signOn() , recoverOn();
 
-                        return   loginOn()  ,  signOn() , recoverOn();
-                        
-                    }
+}
 
 
 
-// Como el primer caso del if es: "tengo un usuario", el algoritmo prosigo con ese caso. 
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+// Como el primer caso del if es: "tengo un usuario", el algoritmo prosigo con ese caso. DESTRUCCION DE USUARIO
 function logOutUser(){
     // se le indica un evento click que trae una función flecha
     $("#btnLogOut").click(()=> {
-        console.log("ejecuta borrado")
         //con esto borro la key, que lleva el array con los datos del usuario
         sessionStorage.removeItem("userLogged");
         //creo el ancor, como primer hijo en la div, con el icono de logo de usuario
@@ -81,13 +81,22 @@ function logOutUser(){
         });
 }
 
-function loginOn() {
-   
-    $("#ToLogin").click(()=>{ 
 
-    $(".seventh__lead").remove()
-    $(".seventh__recover").remove()
-    $(".seventh__subject").html(
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+//En esta función se agrega un evento, al click en el boton para iniciar sesión.
+function loginOn() {
+    $("#ToLogin").click(()=>{ 
+        
+        //se remueve todos los nodos que no forman parte de este paso del algoritmo y se imprime el formulario con el que puede iniciar sesión el usuario 
+        $(".seventh__lead").remove()
+        $(".seventh__recover").remove()
+        $(".seventh__subject").html(
             `
         <div class="seventh__framming">
         <div class="seventh__head">
@@ -129,27 +138,34 @@ function loginOn() {
         </div>
         `
         );
+        // estas funciones llevan un algoritmo que permite al usuario ver lo que esta escribiendo dentro del imput de contraseña
         lookOnPass("takeALook","password");
+        // se retornan dos funciones, la primera le permite continuar con el loguin, la segunda abortar y cerrar el popUP
         return confirmTologin(), btnCloseOn();
     });
     }
 
-
+// esta función tiene la primer API, su función es buscar contenido y devolverlo, comprobando si el input tiene un similar en ese espacio almacenado en la web
 function confirmTologin(){
 
     $("#btnLogin").click( ()=>{
             //declara las variables de las que se piden dato.
-            let DOMinputUser ="claudia.cruz@example.com";
-            let DOMinputpass = "lickme";
-            //let DOMinputUser =$("#nickOfUser").val();
-            //let DOMinputpass =$("#password").val();
+            
+            // PARA TESTEAR RÁPIDO //
+            //let DOMinputUser ="claudia.cruz@example.com";
+            //let DOMinputpass = "lickme";
+            
+            
+            
+            let DOMinputUser =$("#nickOfUser").val();
+            let DOMinputpass =$("#password").val();
             
             // se declara la api, se ingresa la URL de donde se obienten los datos, se informa que clase de datos va a obtener, se informa que ante el resultado positivo, se realiza un for each para instanciar los usuarios de la base de datos en el array, y se le pide retornar con la función searching, con dos argumentos el nombre de usuario y el pass ingresado
             $.ajax({
             url: 'https://randomuser.me/api/?nat=ES&results=10&seed=a1',
             dataType: 'json',
             success: (data) => {
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ESTO NO SE HACE, ESTO SE HIZO PORQUE LA URL DE LA API QUE ENCONTRE TIENE POR OBJETO DAR DATOS RANDOM Y CRASHEA EN LAS CONSULTAS(SI LO CODEO A CONSULTA DIRECTA), NO ES PARA FUNCIONAR DE BASE DE DATOS!!!!!!!!!!!!!!!!1!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ESTO NO SE HACE, ESTO SE HIZO PORQUE LA URL DE LA API QUE ENCONTRÉ A LA CONSULTA DIRECTA A VECES LA CRASHEABA y A VECES NO!!!!!!!!!!!!!!!!!!
                 data.results.forEach(element => {
                     user.push(element);
                 });
@@ -212,6 +228,14 @@ function goToProfile(dataUser){
 
 }
 
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------
+// Esta función lleva al algoritmo por el camino de creación del usuario. Remueve nodos innecesarios para este proceso, imprime varios inputs de formulario, les da interacción visual con las funciones lookOnPass y se retorna para continuar el camino de creación del usuario o se pueda abortar el proceso
 function signOn(){
     $("#signinMember").click( ()=>{
         $(".seventh__lead").remove()
@@ -328,8 +352,8 @@ function toCreateUser(){
     
        //esto no se hace acá pero como el boton no es SUBMIT, es necesario.
        if(DOMinputFirst.length < 3 || DOMinputNickname.length < 3 || DOMinputPass != DOMinputRePass || DOMinputEmail.length < 7 || inputFullLocation.length < 7 || DOMinputCodePost.length < 4 ){
-        alert("hay datos mal ingresados")
-    }else{
+        alert("hay datos mal ingresados");
+    } else {
        const userCreator = {
            name: {
                first: DOMinputFirst,
@@ -356,7 +380,7 @@ function toCreateUser(){
     }
 }
 
-
+// con esta función se crea la vista para que el usuario sepa que se ha creado correctamente el usuario. Remueve nodos innecesarios, imprime contenido del array del nuevo usuario y lo lleva al session storage
 function profileCreated(user){
         
     
@@ -371,6 +395,11 @@ function profileCreated(user){
     return sessionStorage.setItem( "userLogged" , JSON.stringify(user[0])) , checkSession();
     
 }
+
+
+//--------------------------------------------------------------------------------------------------
+// recover es practicamente igual que crear el usuario solo que sin el trabajo de storage al final
+
 
 
 function recoverOn(){
@@ -415,14 +444,16 @@ function confirmRecoverPass(){
     $("#btnRecover").on("click" , checkEmail);
     
         function checkEmail() {
-           //let inputEmail = $("#emailSign").val();
-           let inputEmail ="claudia.cruz@example.com";
+           let inputEmail = $("#emailSign").val();
+           
+           
+           //USAR PARA TESTEO RÁPIDO
+           //let inputEmail ="claudia.cruz@example.com";
            
            $.ajax({
             url: 'https://randomuser.me/api/?nat=ES&results=10&seed=a1',
             dataType: 'json',
             success: (data) => {
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ESTO NO SE HACE, ESTO SE HIZO PORQUE LA URL DE LA API QUE ENCONTRE TIENE POR OBJETO DAR DATOS RANDOM Y CRASHEA EN LAS CONSULTAS(SI LO CODEO A CONSULTA DIRECTA), NO ES PARA FUNCIONAR DE BASE DE DATOS!!!!!!!!!!!!!!!!1!!
                 data.results.forEach(element => {
                     user.push(element);
                 });
@@ -431,7 +462,7 @@ function confirmRecoverPass(){
         })
     }
 }  
-
+//función asincronica que espera la ejecusión de una función que le devuelve en promesa de ser cumplida el chequeo en la api de que haya un correo igual al ingresado
 const toSearchEmail = async (inputEmail) => {
 
     try {
@@ -451,11 +482,9 @@ const toSearchEmail = async (inputEmail) => {
 }
 
 const findEmail = (inputEmail) => {
-    console.log("por aca2")
 
     let emailValid = user.find(item => item.email == inputEmail);
-        
-    
+
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (emailValid) {
@@ -488,14 +517,16 @@ function toConcludeRecover(dataUser){
 }
 
 
-//se retorna la función del popUP y con btnCloseOn se cierra el popUP, removiendo la clase birngON
-btnCloseOn();
-//logSignRec();
+//----------------------------------------------------------------------------------------------------------
+//Con estas 2 función el PopUp se "abre y se "cierra".
+function userProcessOn(){
+    $("#btnForUsers").click( ()=>{
+            $("#btnForUsers").addClass("userless");
+            $(".seventh").addClass("bringON");
+            btnCloseOn();
+    })
+}
 
-    
-
-
-//antes de pasar a la función que vifurca el resultado del PopUp se crea una función que sirve para cerrar el PopUp
 function btnCloseOn(){
     $("#exitPopUp").click(()=>{ $(".seventh").removeClass("bringON" , "turnOFF")
     $("#btnForUsers").removeClass("userless")
@@ -504,6 +535,10 @@ function btnCloseOn(){
     
 }
 
+btnCloseOn();
+
+
+// con estas funciones se remueve un attr para un evento mouseUp y mousedown
 function lookOnPass(ancor , input){
     $(`#${ancor}`).mousedown(()=>{
         $(`#${input}`).removeAttr("type"), console.log("hola")
@@ -513,4 +548,6 @@ function lookOnPass(ancor , input){
         $(`#${input}`).attr("type", "password"), console.log("chau")
     })
     }
-    
+
+
+         

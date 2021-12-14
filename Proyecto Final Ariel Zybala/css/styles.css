@@ -403,6 +403,11 @@ header {
       display: flex;
       flex-flow: row;
       width: 75%; } }
+  .menu__icon {
+    z-index: 9;
+    position: absolute;
+    top: 15px;
+    right: 50px; }
   .menu__input {
     display: none; }
   .menu__label {
@@ -412,28 +417,29 @@ header {
       .menu__label {
         display: none; } }
   .menu__nav {
-    z-index: 0;
     margin-right: 15px;
-    visibility: hidden;
+    display: none;
     opacity: 0;
     transition: ease-in-out 1s; }
     @media (min-width: 1024px) {
       .menu__nav {
+        display: initial;
         visibility: visible;
         opacity: 1; } }
   .menu__input:checked ~ .menu__nav {
-    visibility: visible;
+    display: initial;
     opacity: 1;
-    z-index: 9; }
+    z-index: 8; }
   .menu__ul {
     list-style: none;
-    margin-top: .4em;
+    padding-top: 2em;
     text-align: center;
     background-color: linear-gradient(145deg, #e26198 0%, #e07e69 50%, #e2616c 100%); }
     @media (min-width: 1024px) {
       .menu__ul {
         margin-left: 3em;
-        margin-top: 0em; } }
+        margin-top: 0em;
+        padding-top: 0em; } }
   .menu__li {
     padding-right: .5em;
     padding-left: .5em;
@@ -480,6 +486,15 @@ header {
 
 .btnsHeadSet__log {
   display: contents; }
+
+.btnsHeadSet__counter {
+  position: absolute;
+  font-family: 'Comfortaa',  sans-serif, sans-serif;
+  font-size: .5em;
+  font-weight: normal;
+  font-style: normal;
+  text-shadow: gray 2px 2px 2px;
+  color: white; }
 
 .userLogIn,
 .shopkart {

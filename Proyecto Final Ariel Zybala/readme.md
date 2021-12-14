@@ -2,20 +2,18 @@
 ___
 ### **Autor**: Ariel Gustavo Zybala
 ___
-##### *Este es el primer proyecto que desarrollo en este formato, usando Lenguaje de Marcas de Hipertexto (HTML), Lenguaje de diseño gráfico en hojas de estilo en cascada (CSS) -Complementado con un desarrolldo del Nesting con sintaxis hecha con SCSS-.*
+##### *Este proyecto toma las bases del proyecto final presentado, en el primer curso de la carrera de Fullstack, en el que se utilizó un Lenguaje de Marcas de Hipertexto (HTML), Lenguaje de diseño gráfico en hojas de estilo en cascada (CSS) -Complementado con un desarrolldo del Nesting con sintaxis hecha con SCSS-. Al mismo, se agregó cuatro archivos en los que se implementan todas las practicas de lenguaje en JavaScript que fueran impartidas en clase.*
 ___
 
 
 ## Introducción
 
-El sitio web se fue desarrollando progresivamente como respuesta al grupo de consignas impuestas en los desafíos del curso de *"Desarrollo Web"* impartido por el docente **Maximiliano Torreblanca** en la casa de estudio **CODERHOUSE**, con la ayuda de la docente tutora **María L. G. Jausoro**.
+El sitio web se fue desarrollando progresivamente como respuesta al grupo de consignas impuestas en los distintos desafíos del curso de *"Desarrollo Web"* y *"JavaScript"*, impartido por el docente **Maximiliano Torreblanca**, en la casa de estudio **CODERHOUSE**, con la ayuda de los docentes: Tutora **María L. G. Jausoro** y los **Federico Pagura**(con la intervención especial de **Ferran Martinez**).
 
 ## Retos, Cambios, Necesidades y Superación en el Proceso
+Entre todos los desafíos, siempre el principal es saber dónde esta el punto en el que finalizan todas las tareas y como administrar el tiempo. Y eso, se debe a la cantidad de tiempo que insumimos para aprender y aplicar los conocimentos, a medida de que investigamos e implementamos lo visto en clase. Creo que lo fue, porque implica lidiar con las propias limitaciones. Resulta muy gratificante haber podido llegar a la fecha con algo de tiempo de anticipación.
+En este casó, no hubo cambios sobre lo que se proyecto, esta vez las necesidades fueron advertidas y abordadas paso a paso, luchando contra el tiempo y cumpliendo con cada entrega. El punto de superación esta en ese lugar, en haber establecido un método de trabajo y de pensamiento que impida a la anciedad y a los errores paralizar el desarrollo del trabajo.
 
-El proyecto inicialmente se compuso con la teoría de crear 7 páginas, donde alojar la mayor cantidad de temáticas abordadas en el curso.
-Poco a poco, con la necesidad de aprobar los desafíos, el proyecto se redujo, fue descartada el contenido entero de una página puesto que no incorporabla nada sustancialmente distinto en pos de demostrar un conocimiento diferente al que se estaba usando en otras páginas. Luego, se produjo una unificación con la página de contacto y de preguntas frecuentes, puesto que por separadas eran páginas con poco desarrollo en instrumentación de conocimientos, pero no lo suficiente para ser descartadas.
-Perduraron las ideas principales, entre ellas la de crear una página donde visualizar productos, creando un filtrado de los mismos; y una estructura de dropdown para las preguntas frecuentes.
-En el proceso de ir conociendo herramientas dentro de las reglas de estilo, que se impartían en cada clase, se dio en el proyecto lugar a un punto de superación de las propias capacidades, dando al uso de GRID en los formularios una alternancia entre distintos inputs. Los mismos ocupan un distintos espacios o el mismo dentro de las areas, pero que se alternan por la estructura html. Lo que implica, un uso multiple para las mismas clases y un uso multiple para el mismo selector. 
 
 #### Archivos
 * HTML
@@ -25,6 +23,7 @@ En el proceso de ir conociendo herramientas dentro de las reglas de estilo, que 
     4. Peluqueria
     5. Productos
     6. error404
+    7. SumarioDeCompras
 * CSS
     * SCSS
         - División de grupos:
@@ -54,4 +53,13 @@ En el proceso de ir conociendo herramientas dentro de las reglas de estilo, que 
                 + catalog
                 <!-- error404 -->
                 + error404
-
+                <!-- Incorporados en este 2do curso -->
+            3.  Bloques funcionales al desarrollo en JavaScript 
+                + popUp
+                + tables
+                + banners
+* JavaScript
+    + main <!-- Archivo principal del Algoritmo de carrito -->   
+    + login <!-- Algoritmo de login -->
+    + summarybuy <!-- Archivo secundario, donde se intenta armonizar main y login -->
+    + vainilla <!-- Este es un archivo creado para demostrar, brevemente algunas capacidades, en el uso del lenguaje puro sin uso de la librería de JQUERY -->

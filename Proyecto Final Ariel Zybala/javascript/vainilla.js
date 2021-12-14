@@ -1,7 +1,15 @@
+
+
+//creo las variables que voy a usar
 let message = [];
+//llamo dentro del documento por id al boton que quiero usar
 const buttonForm = document.getElementById('btnForm');
 
-
+/*
+le ingreso un evento con una funcion flecha, en la que tomo los valores 
+por id's de los inputs del formulario y luego los instancio por una matriz. 
+eso lo pusheo al array, le hago un return de la instancia que quiero del array
+*/
 buttonForm.addEventListener('click' , () => {
 
     let fullName = document.getElementById('fullnameContact').value;
@@ -25,8 +33,9 @@ buttonForm.addEventListener('click' , () => {
     return printReceived(message[0]);
 });
 
+// remuevo el boton e imprimo el nuevo dom sobre el otro
 function printReceived(message){
-    //document.getElementById('buttonForm').remove
+    buttonForm.parentNode.removeChild(buttonForm);
     let postQuestion = document.getElementById('newMessage');
     postQuestion.innerHTML=
     `
@@ -45,5 +54,3 @@ function printReceived(message){
 
 
 }
-
-//fullName, phone, email, petName, theQuestion

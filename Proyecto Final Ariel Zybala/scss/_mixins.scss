@@ -74,6 +74,17 @@
     }
 }
 
+@mixin counter ($fontcolor, $shadow){
+  font-family: 'Comfortaa',  sans-serif, sans-serif;
+  font-size: .5em ;
+  font-weight: normal;
+  font-style: normal;
+  text-shadow: $shadow 2px 2px 2px ;
+  color: $fontcolor;
+}
+
+
+
 @mixin textForm ($fontcolor, $shadow){
   font-family: 'Comfortaa',  sans-serif, sans-serif;
   font-size: .6em ;

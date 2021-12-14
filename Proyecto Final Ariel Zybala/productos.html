@@ -17,13 +17,13 @@
 </head>
 
 <body>
-
+    <!--header-->
     <header>
         <div id="btnsHeadSet">
             <div class="btnsHeadSet__log" id="iconLog">
                 <a class="userLogIn" id="btnForUsers" ><i class="fa fa-user" ></i></a>
             </div>
-            <a class="shopkart" ><i class="fa fa-shopping-cart" id="btnToShopKart"></i></a>
+            <a class="shopkart" ><i class="fa fa-shopping-cart" id="btnToShopKart"><span id="counterArray"></span></i></a>
             <a class="logo" href="index.html">PAW-PAW <i class="fa fa-paw logo__i"></i></a>
         </div>  
         <div class="menu">
@@ -41,6 +41,7 @@
 </div>
 </header>
 
+    <!--Main con 2 section una hero y otra para la impresión dinamica de card y el funcionamiento del carrito-->
     <main>
         <section class="hero hero--products">
             <div class="hero__container">
@@ -130,21 +131,9 @@
         </div>
             </div>
         </section>
-        <div class="seventh">
-            <div class="seventh__signLog" id="workBoard">
-        
-                    <div class="seventh__framing">
-                        <form class="seventh__subject" id="logSign">
-        
-        
-                            
-                        </form>
-                    </div>
-                    
-                </div>
-            </div>
-    </main>
 
+    </main>
+    <!--FOOTER-->
     <footer>
         <div class="sitemap">
             <h4 class="sitemap__title">Mapa del Sitio </h4>
@@ -204,7 +193,22 @@
         </div>
     </footer>
 
-    <script src="javascript/main.js"></script>
+    <!--div para el POPUP-->
+    <div class="seventh">
+        <div class="seventh__signLog" id="workBoard">
+    
+                <div class="seventh__framing">
+                    <form class="seventh__subject" id="logSign">
+    
+    
+                        
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    <!--archivos js linkeados-->
+        <script src="javascript/main.js"></script>
     <script src="javascript/login.js"></script>
 
 </body>

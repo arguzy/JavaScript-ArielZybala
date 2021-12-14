@@ -1,5 +1,15 @@
+//creo las variables voy a usar
 let preOrder = [];
 let finalOrder = [];
+
+
+//---------------------------------------------------------------------------------
+
+//arranca todo con el llamado a la función que obtiene del storge lo que el usuario seleccionó.
+checkStorage()
+
+
+function checkStorage(){
 let requestOfOrder = JSON.parse(sessionStorage.getItem("orderOnProcess"));
 console.log(requestOfOrder)
 if(requestOfOrder != null){
@@ -12,11 +22,11 @@ if(requestOfOrder != null){
     totalFinal(preOrder)
     removeNodes()
 }
-console.log(preOrder)
+}
 
 
+//imprime cada producto del array
 function newOrderToPrint(selected) {
-    console.log("aca")
     $("#tableSummary").append(
         `   <tr class="fifth__tableRow" id="${selected.itemId}">
                     <td data-label="Imagen" class="fifth__dataTable"><img class="fifth__imgProd" src="${selected.itemImage}"></td>
@@ -31,6 +41,8 @@ function newOrderToPrint(selected) {
 
 };
 
+
+//se usa para dar evento click al boton "quitar", que el usuario ve en la tabla
 function removeNodes() {
     $(".fifth__trash").on("click", (e) => {
         e.stopPropagation();
@@ -48,6 +60,7 @@ function removeNodes() {
     })
 }
 
+//imprime en el foot de la tabla el valor final que debe pagar el usuario
 function totalFinal(preOrder) {
 
     const total = preOrder.map(obj => obj.itemSubtotal).reduce((preValue, currentValue) => preValue + currentValue, 0);
@@ -60,29 +73,40 @@ function totalFinal(preOrder) {
                 <td>${total}</td>
                 </tr>`
         )
+        basketCounter()
     }
     else {
-
         $("#amountTotal").remove();
+        basketCounter()
     }
 }
 
+//-------------------------- Paso a volver a seleccionar elementos nuevos en el carrito de compra
 
+
+//el evento queda declarado y abierto para que el usuario al volver a la pagina de carrito se pushee el array como esta (por si borro algo, ya vuelve modificado//
 $("#backToProducts").click(()=>{
     sessionStorage.setItem( "orderOnProcess" , JSON.stringify(preOrder))
 });
 
+//-------------------------- Paso a finalizar compra
+
+//el evento queda declarado desde que se inicia. Con esta función se obtiene del storage session los datos que el usuario a logueado o creado. 
 $("#paymentMethods").click(()=>{
     
-    let userData = JSON.parse(sessionStorage.getItem( "userLogged"));
+    let userData = JSON.parse(sessionStorage.getItem("userLogged"));
     
     goToMethods();
     finalizePurchase();
+
     if(userData != null){ 
         return printUserData(userData);
     };
 })
 
+//------------------- siguiente paso seleccionar los medios de pagos
+
+//imprime el formulario para seleccionar los metodos de pago
 function goToMethods() {
     $("#ToPurchase").html(
         `
@@ -144,7 +168,10 @@ function goToMethods() {
             </div>`
     ); 
 }
- 
+
+
+//si el usuario estaba previamente logueado toma los datos y los imprime directamente en el input perteneciente
+
 function printUserData(user){
     let firstName = `${user.name.first}`;
     let lastName = `${user.name.last}`;
@@ -158,6 +185,8 @@ function printUserData(user){
     $("#postalSign").val(`${user.location.postcode}`)
  }
 
+
+//Con esta funcion totamos los datos ingresados por el usuario en los inputs
  function finalizePurchase(){
      $("#sendMethods").click(()=>{
     
@@ -169,31 +198,41 @@ function printUserData(user){
     let inputChoiceMethods = "";
     let checkboxes = $("#choiceMethods").find("input[type=checkbox]");
     
+    //FUNDAMENTAL MÉTODO EQ() PARA INDICARLE CUAL DE LOS DOS DOM CHECKBOXES FUE TILDADO
     for (let i = 0; i < checkboxes.length; i++) {
     
         if(checkboxes.eq(i).is(":checked")){
         inputChoiceMethods += checkboxes.eq(i).val() + "\n";
     
-    }    
-}
-    const infoForOrder = {
-        orderFullname : inputFullname,
-        orderEmail : inputEmail,
-        orderFullAddress : inputFullAddress,
-        orderPostalCode : inputPostalCode,
-        orderchosenMethod : inputChoiceMethods 
-     }
+            }    
+        }
+    
+        const infoForOrder = {
+            orderFullname : inputFullname,
+            orderEmail : inputEmail,
+            orderFullAddress : inputFullAddress,
+            orderPostalCode : inputPostalCode,
+            orderchosenMethod : inputChoiceMethods 
+         }
 
-     if (inputFullname != "" && inputFullname != "" &&
-     inputEmail != "" && inputFullAddress != "" && inputPostalCode != "" && inputChoiceMethods != "") { if ($("#ckbx_1").is(":checked") && $("#ckbx_2").is(":checked")){
-        alert("Debes Seleccionar un sólo medio de pago")
-     } else {
-     finalOrder.push(infoForOrder);    
-     printResult();
-     removeLastOrder();}
-    } else{ alert("Falta ingresar información")}
+        if (inputFullname != "" && inputFullname != "" &&
+        inputEmail != "" && inputFullAddress != "" && inputPostalCode != "" && inputChoiceMethods != "") { 
+            if ($("#ckbx_1").is(":checked") && $("#ckbx_2").is(":checked")){
+            alert("Debes Seleccionar un sólo medio de pago")
+            } else {
+        
+            finalOrder.push(infoForOrder);    
+        
+            printResult();
+            removeLastOrder();
+            }
+        
+        } else{ alert("Falta ingresar información")}
+    
     })
 }
+
+//con esta función informamos al usuario que el proceso se ha finalizado imprimiendo DOM con ese mensaje
 function printResult() {
     $(".eighth").html(
         `
@@ -204,9 +243,21 @@ function printResult() {
         `)
 }
 
+//con esta función removemos del session storage el array, una vez que se apreta en el último elemento del array
 function removeLastOrder(){
     $("#removePurchaseRequest").click(()=> {
-        console.log("ejecuta borrado")
+
         sessionStorage.removeItem("orderOnProcess");
         });
         }
+
+//imprime el numero de unidades de los productos seleccionados, en la barra nav, al lado del icono carrito
+function basketCounter(){
+    if(preOrder[0] == undefined){
+    $(".btnsHeadSet__counter").remove()
+    } else {
+    let totalUnits = preOrder.map(obj => obj.itemUnits).reduce((preValue, currentValue) => preValue + currentValue, 0);
+
+    $("#counterArray").html(`<p class="btnsHeadSet__counter">${totalUnits}<p>`);
+}
+}

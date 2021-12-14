@@ -1,33 +1,45 @@
-
-
+// Iniciamos declarando variables
 let productsDataBase = [];
 let preOrder = [];
-let totalToPrint;
-let requestOfOrder = JSON.parse(sessionStorage.getItem("orderOnProcess"));
 
+
+//_______________________________________________________________________________________________________________
+
+// función para chequear en sessionStorage si hay un array de productos precargado, se imprime o se pushea al array  preOrder corazon de todo el algoritmo
+checkprevious();
+
+function checkprevious(){
+let requestOfOrder = JSON.parse(sessionStorage.getItem("orderOnProcess"));
 if(requestOfOrder != null){
     requestOfOrder.forEach(element => {
-        preOrder.push(element);       
+        preOrder.push(element);
+              
     });
     for (let i = 0; i < preOrder.length; i++) {
         newOrderToPrint(preOrder[i]);
+        basketCounter() 
     }
     removeNodes()
     toContinueProcess ()
+    
+}
 }
 
+//______________________________________________________________________________________________________
 
-
+// API, con un evento READY para ejecutarse una vez cargado el documento
 $(document).ready(function () {
+    //creo la variable con el metodo para pedir la api de localización
     let geoLoc = navigator.geolocation.getCurrentPosition(showPosition);
-    function showPosition(position) {
-        let lat = position.coords.latitude;
-        let long = position.coords.longitude;
-        getToWeat(lat, long);
-    }
 });
+// con los datos obtenidos creo dos variables más para separar la latitud y la longitud, retorno implisito a getToWeat, para continuar con el algoritmo
+function showPosition(position) {
+    let lat = position.coords.latitude;
+    let long = position.coords.longitude;
+    getToWeat(lat, long);
+}
 
-
+//Con un ajax, se llama a la API de openweathermap, para conocer que ciudad es
 function getToWeat(lat, long) {
 
     $.ajax({
@@ -47,7 +59,7 @@ function getToWeat(lat, long) {
 
 }
 
-
+// la función asincrona que espera la promesa que constata que lugar tiene esa latitud y longitud
 const localPoint = async (data) => {
 
     try {
@@ -65,6 +77,8 @@ const localPoint = async (data) => {
     }
 
 }
+
+// la función promesa que nos devuelve un resolve si el lugar es en buenos aires y sino un reject con el mensaje para el error que se anuncia al usuario con un alert
 
 const contrastPosition = (data) => {
 
@@ -84,6 +98,8 @@ const contrastPosition = (data) => {
     });
 }
 
+
+// la función instanciadora de los objetos
 function cardItem(category, imagItem, descriptionImag, firstImag, secondImag, id, named, price, stock, subtotal, units) {
     this.category = category;
     this.imagItem = imagItem;
@@ -98,7 +114,7 @@ function cardItem(category, imagItem, descriptionImag, firstImag, secondImag, id
     this.units = units
 }
 
-
+// esta funcion filtra con el true o con el falfe que retorna la funcion promesa, que fproductos se van a terminar imprimiendo en el DOM
 function enableProducts(valuePosition) {
     
     if (valuePosition == true) {
@@ -132,6 +148,7 @@ function enableProducts(valuePosition) {
     }
 }
 
+//los productos que siempre se imprimen
 function nonEdibleProducts() {
     productsDataBase.push(new cardItem("pots", "media/prdts/bowl/item-carrito-bowl1.png", "tazón para perro", 'media/prdts/bowl/item-carrito-bowl2.png', 'media/prdts/bowl/item-carrito-bowl1.png', "zdb1", "ZeeDog B-Metal", 700, 5, 0, 0));
     productsDataBase.push(new cardItem("pots", "media/prdts/bowl/item-carrito-bowl3.png", "tazón para perro", 'media/prdts/bowl/item-carrito-bowl4.png', 'media/prdts/bowl/item-carrito-bowl3.png', "zdb2", "ZeeDog B-Standart", 600, 1500, 0, 0));
@@ -160,7 +177,38 @@ function nonEdibleProducts() {
 
 }
 
+//esta función imprime cada card de la función instanciadora en el DOM
+function fullProducts(i, instance) {
 
+    $("#catalog").append(
+        ` <div class="quarter__prod" data-category=${instance.category}>
+                        <img src="${instance.imagItem}"
+                        onmouseover="this.src='${instance.firstImag}';"
+                        onmouseout="this.src='${instance.secondImag}';"
+                        alt="${instance.descriptionImag}" class="quarter__pic">
+                        <div class="quarter__brand">
+                        <h3 class="quarter__item nameItem">${instance.named}</h3>
+                        <span class="quarter__code">Código:<p class="idItem">${instance.id}</p></span>
+                            </div>
+                            <div class="quarter__price">
+                            <span class="quarter__amount" >PRECIO $<p class="priceItem">${instance.price}</p></span>
+                            </div>
+                            <div class="quarter__purchaser">
+                            <button class="quarter__buy">COMPRA!</button>
+                                <span class="quarter__summation"><p  class="subtotalItem" id="subtotalPicked${i}">${instance.subtotal}</p></span>
+                                <div class="quarter__numerator">
+                                <button class="quarter__counter">-</button>
+                                <span class="quarter__num"><p class="unitsItem" id="unitsPicked${i}">${instance.units}</p></span>
+                                <button class="quarter__counter">+</button>
+                                </div>
+                                <span class="querter__stock" id="stockPicked${i}" hidden>${instance.stock}</span>
+                                </div>
+                            </div>`
+    )
+}
+
+
+// esta funcion instancia en un array consumible por el algoritmo, a las card pintadas en el dom, que se obtienen como consecuencia del evento click de comprar en todos los botones con la clase quarter__buy
 function processToBuy() {
     $(".quarter__buy").click(function addCartShop(e) {
         e.stopPropagation();
@@ -194,35 +242,8 @@ function processToBuy() {
 }
 
 
-function fullProducts(i, instance) {
-    $("#catalog").append(
-        ` <div class="quarter__prod" data-category=${instance.category}>
-                        <img src="${instance.imagItem}"
-                        onmouseover="this.src='${instance.firstImag}';"
-                        onmouseout="this.src='${instance.secondImag}';"
-                        alt="${instance.descriptionImag}" class="quarter__pic">
-                        <div class="quarter__brand">
-                        <h3 class="quarter__item nameItem">${instance.named}</h3>
-                        <span class="quarter__code">Código:<p class="idItem">${instance.id}</p></span>
-                            </div>
-                            <div class="quarter__price">
-                            <span class="quarter__amount" >PRECIO $<p class="priceItem">${instance.price}</p></span>
-                            </div>
-                            <div class="quarter__purchaser">
-                            <button class="quarter__buy">COMPRA!</button>
-                                <span class="quarter__summation"><p  class="subtotalItem" id="subtotalPicked${i}">${instance.subtotal}</p></span>
-                                <div class="quarter__numerator">
-                                <button class="quarter__counter">-</button>
-                                <span class="quarter__num"><p class="unitsItem" id="unitsPicked${i}">${instance.units}</p></span>
-                                <button class="quarter__counter">+</button>
-                                </div>
-                                <span class="querter__stock" id="stockPicked${i}" hidden>${instance.stock}</span>
-                                </div>
-                            </div>`
-    )
-}
 
-
+// esta funcion encargada de distribuir en el algoritmo, que click no puede ser compra, que click es compra y se pushea al array o altera al array, y que parte se imprime o se re imprime. FUNDAMENTAL EL MÉTODO FIND
 function arrayRegister(productSelected) {
     if (productSelected.itemUnits == 0) {
         return alert(`Debes seleccionar una cantidad de producto, en este producto nuestro stock es: ${productSelected.itemStock} unidades `);
@@ -257,7 +278,7 @@ function arrayRegister(productSelected) {
     }
 }
 
-
+// imprime en la tabla sobre un nodo previo del carrito, el producto existente con nuevas condiciones de cantidad
 function changeOrderPrinted(selected) {
     $(`#${selected.itemId}`).html(
         `<td data-label="Imagen" class="fifth__dataTable"><img class="fifth__imgProd" nowrap src="${selected.itemImage}"></td>
@@ -271,7 +292,7 @@ function changeOrderPrinted(selected) {
 
 }
 
-
+// imprime dom en la tabla como nuevos elementos cada producto que se trae con el evento click sobre el boton de compra
 function newOrderToPrint(selected) {
     $("#tablePreOrder").append(
         `   <tr class="fifth__tableRow" id="${selected.itemId}">
@@ -287,7 +308,7 @@ function newOrderToPrint(selected) {
 
 };
 
-
+// remueve nodos de los productos impresos ante el click en el boton quitar de la canasta
 function removeNodes() {
     $(".fifth__trash").on("click", (e) => {
         e.stopPropagation();
@@ -303,7 +324,7 @@ function removeNodes() {
     })
 }
 
-
+// imprime el total final con la suma de todos los sub totales. FUNDAMENTAL EL METODO "MAP", CONVINADO CON "REDUCE"
 function totalFinal(preOrder) {
 
     const total = preOrder.map(obj => obj.itemSubtotal).reduce((preValue, currentValue) => preValue + currentValue, 0);
@@ -316,14 +337,15 @@ function totalFinal(preOrder) {
                 <td>$${total}</td>
                 </tr>`
         )
+        basketCounter()
     }
     else {
-
         $("#amountTotal").remove();
+        basketCounter()
     }
 }
 
-
+// la funcion encargada de los botones contadores de las unidades que muestran en la car cada unidad y cada subtotal al momento
 function countersButtons() {
     $(".quarter__counter").click(function selectUnits(e) {
         e.stopPropagation();
@@ -358,12 +380,13 @@ function countersButtons() {
     });
 }
 
-
+// esta es la impresora de las modificaciones de los botones contadores
 function updateDisplay(i, newUnits, newSubtotal) {
     $(`#subtotalPicked${i}`).html(`${newSubtotal}`);
     $(`#unitsPicked${i}`).html(`${newUnits}`);
 }
 
+//Cierre automatico, al quitar el último producto del carrito
 function toContinueProcess (){
 
     if(preOrder.length<= 0){
@@ -374,6 +397,7 @@ function toContinueProcess (){
     }
 }
 
+//Esta funcion tiene la tarea de abrir o impedir la apertura, del popUp con la vista previa del carrito en caso de estar vacío
 $("#btnToShopKart").click(()=>{
     if(preOrder[0] != undefined){
     $(".fifth__overlay").css("display" , "initial");
@@ -384,15 +408,27 @@ $("#btnToShopKart").click(()=>{
     }
     })
 
-
+// esta función pushea el array al storage session al momento del click en el boton pagar
 $("#toSummaryBuy").click(()=>{
         sessionStorage.setItem( "orderOnProcess" , JSON.stringify(preOrder))
     
 });
 
+//funcion para cerrar el popUP del carrito
 function closePopUpShop(){
     if(preOrder[0] == undefined){
         $(".fifth__overlay").css("display" , "none")}
+}
+
+//imprime el numero de unidades de los productos seleccionados, en la barra nav, al lado del icono carrito
+function basketCounter(){
+    if(preOrder[0] == undefined){
+    $(".btnsHeadSet__counter").remove()
+    } else {
+    let totalUnits = preOrder.map(obj => obj.itemUnits).reduce((preValue, currentValue) => preValue + currentValue, 0);
+
+    $("#counterArray").html(`<p class="btnsHeadSet__counter">${totalUnits}<p>`);
+}
 }
 
 
